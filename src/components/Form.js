@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 
-function Form() {
+function Form({queryData}) {
 
 //search = state , saveSearch = this.setState({})
     const [search, saveSearch]  = useState({
@@ -10,12 +10,19 @@ function Form() {
 
     const handleChange = e => {
         saveSearch({
-            ...search,
+            ...search,//copy the actual state
             [e.target.name] :e.target.value
         });
+     
+    }
+
+    const checkWeather = e =>{
+        e.preventDefault(); // no refresh page
+        queryData(search);
     }
     return (
-        <form >
+        <form 
+        onSubmit ={checkWeather}>
             <div className="input-field col s12">
                 <input
                     type="text"

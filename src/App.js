@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
 function App() {
+  const [city, saveCity] = useState ('');
+  const [country , saveCountry] = useState('');
+
+  const queryData = data  =>{
+    if (data.city === '' || data.country === '') {
+      
+      return;
+    }
+
+    saveCity(data.city);
+    saveCountry(data.country);
+  }
+
   return (
     <div >
       <Header
@@ -11,7 +24,9 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col s12 m6">
-              <Form />
+              <Form 
+              queryData ={queryData}
+              />
             </div>
           </div>
         </div>
