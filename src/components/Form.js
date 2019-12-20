@@ -1,9 +1,18 @@
-import React from 'react';
+import React ,{useState} from 'react';
 
 function Form() {
 
-    const handleChange = e => {
+//search = state , saveSearch = this.setState({})
+    const [search, saveSearch]  = useState({
+        city : '',
+        country : ''
+    })
 
+    const handleChange = e => {
+        saveSearch({
+            ...search,
+            [e.target.name] :e.target.value
+        });
     }
     return (
         <form >
