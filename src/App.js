@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
 import Error from './components/Error';
+import Weather from './components/Weather';
 
 function App() {
   const [city, saveCity] = useState('');
@@ -42,8 +43,12 @@ function App() {
   let component;
   if (error) {
     component = <Error message='Campos obligatorios' />
+  }else if (result.cod === "404"){
+    component = <Error message='La ciudad no existe' />
   } else {
-    component = null
+    component = <Weather
+     result  = {result}
+    />
   }
 
   return (
